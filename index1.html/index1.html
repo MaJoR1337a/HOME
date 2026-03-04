@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Весілля Олександра та Альони</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--burgundy:#800020;
+--gold:#c6a75e;
+--soft:#faf7f8;
+}
+
+body{
+margin:0;
+font-family:'Montserrat',sans-serif;
+background:white;
+color:#333;
+overflow-x:hidden;
+}
+
+/* 💌 Конверт */
+#envelope{
+position:fixed;
+inset:0;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+cursor:pointer;
+}
+
+.envelope-box{
+width:320px;
+height:200px;
+background:var(--burgundy);
+border-radius:6px;
+position:relative;
+}
+
+.envelope-box:before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:#600018;
+clip-path:polygon(0 0,100% 0,50% 50%);
+}
+
+#envelope p{
+margin-top:20px;
+letter-spacing:2px;
+color:var(--burgundy);
+}
+
+/* 🌸 Пелюстки */
+.petal{
+position:fixed;
+top:-10px;
+width:12px;
+height:12px;
+background:var(--burgundy);
+opacity:0.6;
+border-radius:50%;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* ✨ Герой */
+.hero{
+background:var(--soft);
+padding:170px 20px;
+text-align:center;
+}
+
+h1{
+font-family:'Playfair Display',serif;
+font-size:56px;
+background:linear-gradient(90deg,var(--gold),#fff,var(--gold));
+background-size:200% auto;
+color:transparent;
+-webkit-background-clip:text;
+animation:shine 4s linear infinite;
+}
+
+@keyframes shine{
+to{background-position:200% center;}
+}
+
+.script{
+font-family:'Great Vibes',cursive;
+font-size:34px;
+color:var(--burgundy);
+margin-top:20px;
+}
+
+section{
+padding:100px 20px;
+text-align:center;
+}
+
+.divider{
+width:80px;
+height:2px;
+background:var(--burgundy);
+margin:40px auto;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+max-width:1000px;
+margin:0 auto;
+}
+
+.gallery img{
+width:100%;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
+}
+
+form{
+max-width:500px;
+margin:0 auto;
+text-align:left;
+}
+
+input,select,textarea{
+width:100%;
+padding:14px;
+margin:10px 0 20px;
+border-radius:12px;
+border:1px solid #eee;
+}
+
+button{
+padding:15px 40px;
+border:none;
+border-radius:40px;
+background:var(--burgundy);
+color:white;
+cursor:pointer;
+}
+
+.music-btn{
+position:fixed;
+top:20px;
+right:20px;
+background:white;
+border:1px solid #eee;
+padding:8px 14px;
+border-radius:30px;
+cursor:pointer;
+color:var(--burgundy);
+}
+
+footer{
+padding:60px;
+background:var(--soft);
+color:#777;
+}
+</style>
+</head>
+<body>
+
+<!-- 💌 Конверт -->
+<div id="envelope" onclick="openInvite()">
+<div class="envelope-box"></div>
+<p>Натисніть, щоб відкрити запрошення</p>
+</div>
+
+<!-- 🎵 YouTube музика -->
+<button class="music-btn" onclick="toggleMusic()">🎵</button>
+<iframe id="ytplayer" width="0" height="0"
+src="https://www.youtube.com/embed/3tmd-ClpJxA?enablejsapi=1"
+frameborder="0"></iframe>
+
+<div id="mainContent" style="display:none;">
+
+<section class="hero">
+<h1>Олександр & Альона</h1>
+<p class="script">Запрошуємо вас розділити з нами наш особливий день</p>
+<p>20 липня 2026 • 15:00 • м. Харків</p>
+</section>
+
+<section>
+<h2>📍 Локація</h2>
+<div class="divider"></div>
+<p>Ресторан White Garden, м. Харків</p>
+<iframe src="https://www.google.com/maps?q=Харків&output=embed"
+width="100%" height="300"
+style="border:0;border-radius:20px;"></iframe>
+</section>
+
+<section>
+<h2>📸 Наші моменти</h2>
+<div class="divider"></div>
+<div class="gallery">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+<img src="photo4.jpg">
+</div>
+</section>
+
+<section>
+<h2>🥂 Підтвердження присутності</h2>
+<div class="divider"></div>
+
+<form id="rsvpForm">
+<input type="text" placeholder="Ім’я та прізвище" required>
+
+<select required>
+<option value="">Чи будете ви присутні?</option>
+<option>Так, із задоволенням 🤍</option>
+<option>На жаль, не зможу</option>
+</select>
+
+<select>
+<option value="">Який алкоголь ви надаєте перевагу?</option>
+<option>Вино 🍷</option>
+<option>Шампанське 🥂</option>
+<option>Віскі 🥃</option>
+<option>Горілка</option>
+<option>Безалкогольні напої</option>
+</select>
+
+<textarea placeholder="Ваші побажання"></textarea>
+
+<button type="submit">Надіслати</button>
+</form>
+
+<p id="thanks" style="display:none;text-align:center;margin-top:20px;color:var(--burgundy);">
+Дякуємо 🤍
+</p>
+</section>
+
+<footer>
+З любов’ю, Олександр та Альона • 2026
+</footer>
+
+</div>
+
+<script>
+
+/* 💌 Відкриття */
+function openInvite(){
+document.getElementById("envelope").style.display="none";
+document.getElementById("mainContent").style.display="block";
+createPetals();
+}
+
+/* 🌸 Пелюстки */
+function createPetals(){
+for(let i=0;i<30;i++){
+let petal=document.createElement("div");
+petal.className="petal";
+petal.style.left=Math.random()*100+"vw";
+petal.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(petal);
+}
+}
+
+/* 🎵 YouTube керування */
+let player;
+function onYouTubeIframeAPIReady(){
+player = new YT.Player('ytplayer');
+}
+
+function toggleMusic(){
+if(player && player.getPlayerState() !== 1){
+player.playVideo();
+}else if(player){
+player.pauseVideo();
+}
+}
+
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+document.body.appendChild(tag);
+
+/* 📝 Форма */
+document.getElementById("rsvpForm").addEventListener("submit",function(e){
+e.preventDefault();
+document.getElementById("thanks").style.display="block";
+this.reset();
+});
+</script>
+
+</body>
+</html>
